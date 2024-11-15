@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('lahan_petani', function (Blueprint $table) {
-            $table->integer('id')->lenght(11)->primary();
+            $table->integer('id')->primary()->autoIncrement();
             $table->char('user_id')->lenght(11);
             $table->foreign('user_id')->references('no_ktp')->on('users');
             $table->integer('luas_lahan')->lenght(11);

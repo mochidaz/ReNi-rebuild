@@ -16,8 +16,8 @@ return new class extends Migration
             $table->char('name', 255);
             $table->char('password', 255);
             $table->integer('role_id')->length(11);
-            $table->foreign('role_id')->references('id')->on('role');
-            $table->char('token' ,255);
+            $table->foreign('role_id')->references('id')->on('roles');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

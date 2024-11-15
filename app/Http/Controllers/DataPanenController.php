@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreData_PanenRequest;
-use App\Http\Requests\UpdateData_PanenRequest;
-use App\Models\Data_Panen;
+use App\Models\DataPanen;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class DataPanenController extends Controller
 {
@@ -13,7 +14,13 @@ class DataPanenController extends Controller
      */
     public function index()
     {
-        //
+        $dataPanen = DataPanen::with(['pangan', 'user', 'lahan', 'dataPanenImage'])->get();
+
+        return response()->json([
+            'message' => 'Data Panen found',
+            'error' => null,
+            'data' => $dataPanen,
+        ]);
     }
 
     /**
@@ -27,40 +34,116 @@ class DataPanenController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreData_PanenRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'tanggal_penanaman' => ['required', 'date'],
+            'tanggal_panen' => ['required', 'date'],
+            'pangan_id' => ['required', 'exists:pangan,id'],
+            'user_id' => ['required', 'exists:users,id'],
+            'hasil_panen' => ['required', 'numeric'],
+            'lahan_id' => ['required', 'exists:lahan_petani,id'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        try {
+            DataPanen::create($request->all());
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'Failed to create Data Panen',
+                'error' => $e->getMessage()
+            ], 400);
+        }
+
+        return response()->json([
+            'message' => 'Data Panen created successfully',
+            'error' => null,
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Data_Panen $data_Panen)
+    public function show(int $id)
     {
-        //
+        $dataPanen = DataPanen::with(['pangan', 'user', 'lahan', 'dataPanenImage'])->find($id);
+
+        if (!$dataPanen) {
+            return response()->json([
+                'message' => 'Data Panen not found',
+                'error' => null,
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Data Panen found',
+            'error' => null,
+            'data' => $dataPanen,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Data_Panen $data_Panen)
+    public function edit(Request $request, int $id)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateData_PanenRequest $request, Data_Panen $data_Panen)
+    public function update(Request $request, int $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'tanggal_penanaman' => ['required', 'date'],
+            'tanggal_panen' => ['required', 'date'],
+            'pangan_id' => ['required', 'exists:pangan,id'],
+            'user_id' => ['required', 'exists:users,id'],
+            'hasil_panen' => ['required', 'numeric'],
+            'lahan_id' => ['required', 'exists:lahan_petani,id'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        try {
+            $dataPanen = DataPanen::findOrFail($id);
+            $dataPanen->update($request->all());
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'Failed to update Data Panen',
+                'error' => $e->getMessage()
+            ], 400);
+        }
+
+        return response()->json([
+            'message' => 'Data Panen updated successfully',
+            'error' => null,
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Data_Panen $data_Panen)
+    public function destroy(int $id)
     {
-        //
+        try {
+            $dataPanen = DataPanen::findOrFail($id);
+            $dataPanen->delete();
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'Failed to delete Data Panen',
+                'error' => $e->getMessage()
+            ], 400);
+        }
+
+        return response()->json([
+            'message' => 'Data Panen deleted successfully',
+            'error' => null,
+        ]);
     }
 }

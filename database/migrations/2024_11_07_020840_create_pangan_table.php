@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pangan', function (Blueprint $table) {
-            $table->integer('id')->lenght(11)->primary();
+            $table->integer('id')->primary()->autoIncrement();
             $table->char('name', 255);
             $table->timestamps();
         });

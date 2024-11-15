@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('artikel_image', function (Blueprint $table) {
-            $table->integer('id')->lenght(11)->primary();
+            $table->integer('id')->primary()->autoIncrement();
             $table->integer('artikel_id')->length(11);
             $table->foreign('artikel_id')->references('id')->on('artikel');
             $table->char('image', 255);

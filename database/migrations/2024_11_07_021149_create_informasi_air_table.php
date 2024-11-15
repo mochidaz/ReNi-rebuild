@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('informasi_air', function (Blueprint $table) {
-            $table->integer('id')->lenght(11)->primary();
+            $table->integer('id')->primary()->autoIncrement();
             $table->text('content');
             $table->integer('wilayah_id')->lenght(11);
             $table->foreign('wilayah_id')->references('id')->on('wilayah');
