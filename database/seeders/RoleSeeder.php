@@ -16,7 +16,11 @@ class RoleSeeder extends Seeder
         $roles = [
             'name' => 'Admin',
         ];
+        $guest = [
+            'name' => 'Guest',
+        ];
 
         DB::table('roles')->insert($roles);
+        DB::table('roles')->insert($guest);
     }
 }
