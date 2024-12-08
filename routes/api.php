@@ -13,8 +13,8 @@ use App\Http\Controllers\WilayahController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::post('register', [AuthController::class, 'register']);
-Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']); //Selesai
+Route::post('login', [AuthController::class, 'login']); //Selesai
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
@@ -74,7 +74,7 @@ Route::get(
 
 // Lahan - Petani
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post(
+    Route::post( //Selesai
         "lahan",
         [LahanPetaniController::class, 'store']
     );

@@ -36,12 +36,15 @@ class LahanPetaniController extends Controller
      */
     public function store(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'luas_lahan' => ['required', 'numeric'],
-            'user_id' => ['required', 'exists:users,id'],
             'wilayah_id' => ['required', 'exists:wilayah,id'],
             'name' => ['required', 'string', 'max:255'],
             'lokasi' => ['required', 'string'],
+        ]);
+        $request->merge([
+            'user_id' => $request->user()->no_ktp
         ]);
 
         if ($validator->fails()) {
