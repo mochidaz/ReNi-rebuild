@@ -23,7 +23,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 // Wilayah Admin
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post(
+    Route::post( //Selesai
         "wilayah",
         [WilayahController::class, 'store']
     );
@@ -49,7 +49,7 @@ Route::get(
 
 // Pangan Admin
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post(
+    Route::post( //Selesai
         "pangan",
         [PanganController::class, 'store']
     );
@@ -99,7 +99,7 @@ Route::get(
 
 // Informasi Air - Admin
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post(
+    Route::post( //Selesai
         "informasi-air",
         [InformasiAirController::class, 'store']
     );
@@ -124,7 +124,7 @@ Route::get(
 
 // Informasi Tanah - Admin
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post(
+    Route::post( //Selesai
         "informasi-tanah",
         [InformasiTanahController::class, 'store']
     );
@@ -150,7 +150,7 @@ Route::get(
 // Informasi Suhu - Admin
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post(
+    Route::post( //Selesai
         "informasi-suhu",
         [InformasiSuhuController::class, 'store']
     );
@@ -176,7 +176,7 @@ Route::get(
 
 // Data Panen - Petani
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post(
+    Route::post( //Selesai
         "data-panen",
         [DataPanenController::class, 'store']
     );

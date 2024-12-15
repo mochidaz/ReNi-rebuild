@@ -36,6 +36,14 @@ class InformasiAirController extends Controller
      */
     public function store(Request $request)
     {
+
+        if ($request->user()->role_id != 1) {
+            return response()->json([
+                'message' => 'You are not authorized to perform this action',
+                'error' => null,
+            ], 403);
+        }
+
         $validator = Validator::make($request->all(), [
             'content' => ['required', 'string'],
             'wilayah_id' => ['required', 'exists:wilayah,id'], // Ensure wilayah_id exists in the Wilayah table

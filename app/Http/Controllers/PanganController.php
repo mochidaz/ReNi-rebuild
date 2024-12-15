@@ -36,6 +36,14 @@ class PanganController extends Controller
      */
     public function store(Request $request)
     {
+
+        if ($request->user()->role_id != 1) {
+            return response()->json([
+                'message' => 'You are not authorized to perform this action',
+                'error' => null,
+            ], 403);
+        }
+
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
         ]);

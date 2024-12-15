@@ -50,15 +50,17 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $token = $user->createToken('Reni')->plainTextToken;
+            $role_id = $user->role_id;
 
             return response()->json([
                 'message' => 'Login successful!',
                 'token' => $token,
+                'role' => $role_id,
             ]);
         }
 
         return response()->json([
-            'message' => 'Invalid credentials'
+            'message' => 'Password atau Username Salah'
         ], 401);
     }
 
