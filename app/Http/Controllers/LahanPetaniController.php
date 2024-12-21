@@ -15,8 +15,7 @@ class LahanPetaniController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $lahanPetani = LahanPetani::with(['user', 'wilayah'])->where('user_id', $user->no_ktp)
-        ->get();
+        $lahanPetani = LahanPetani::with(['user', 'wilayah'])->where('user_id', $user->no_ktp)->get();
 
         return response()->json([
             'message' => 'Lahan Petani found',

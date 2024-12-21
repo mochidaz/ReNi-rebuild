@@ -27,22 +27,22 @@ Route::middleware(['auth:sanctum'])->group(function () {
         "wilayah",
         [WilayahController::class, 'store']
     );
-    Route::put(
+    Route::put( //Selesai
         "wilayah/{id}",
         [WilayahController::class, 'update']
     );
-    Route::delete(
+    Route::delete( //Selesai
         "wilayah/{id}",
         [WilayahController::class, 'destroy']
     );
 });
 
 // Wilayah
-Route::get(
+Route::get( //Sisa User
     "wilayah",
     [WilayahController::class, 'index']
 );
-Route::get(
+Route::get( //Sisa User
     "wilayah/{id}",
     [WilayahController::class, 'show']
 );
@@ -53,21 +53,21 @@ Route::middleware(['auth:sanctum'])->group(function () {
         "pangan",
         [PanganController::class, 'store']
     );
-    Route::put(
+    Route::put( //Selesai
         "pangan/{id}",
         [PanganController::class, 'update']
     );
-    Route::delete(
+    Route::delete( //Selesai
         "pangan/{id}",
         [PanganController::class, 'destroy']
     );
 });
 
-Route::get(
+Route::get( //Sisa User
     "pangan",
     [PanganController::class, 'index']
 );
-Route::get(
+Route::get( //Sisa User
     "pangan/{id}",
     [PanganController::class, 'show']
 );
@@ -103,21 +103,21 @@ Route::middleware(['auth:sanctum'])->group(function () {
         "informasi-air",
         [InformasiAirController::class, 'store']
     );
-    Route::put(
+    Route::put( //Selesai
         "informasi-air/{id}",
         [InformasiAirController::class, 'update']
     );
-    Route::delete(
+    Route::delete( //Selesai
         "informasi-air/{id}",
         [InformasiAirController::class, 'destroy']
     );
 });
 
-Route::get(
+Route::get( //Sisa User
     "informasi-air",
     [InformasiAirController::class, 'index']
 );
-Route::get(
+Route::get( //Sisa User
     "informasi-air/{id}",
     [InformasiAirController::class, 'show']
 );
@@ -128,21 +128,21 @@ Route::middleware(['auth:sanctum'])->group(function () {
         "informasi-tanah",
         [InformasiTanahController::class, 'store']
     );
-    Route::put(
+    Route::put( //Selesai
         "informasi-tanah/{id}",
         [InformasiTanahController::class, 'update']
     );
-    Route::delete(
+    Route::delete( //Selesai
         "informasi-tanah/{id}",
         [InformasiTanahController::class, 'destroy']
     );
 });
 
-Route::get(
+Route::get( //Sisa User
     "informasi-tanah",
     [InformasiTanahController::class, 'index']
 );
-Route::get(
+Route::get( //Sisa User
     "informasi-tanah/{id}",
     [InformasiTanahController::class, 'show']
 );
@@ -154,22 +154,22 @@ Route::middleware(['auth:sanctum'])->group(function () {
         "informasi-suhu",
         [InformasiSuhuController::class, 'store']
     );
-    Route::put(
+    Route::put( //Selesai
         "informasi-suhu/{id}",
         [InformasiSuhuController::class, 'update']
     );
-    Route::delete(
+    Route::delete( //Selesai
         "informasi-suhu/{id}",
         [InformasiSuhuController::class, 'destroy']
     );
 });
 
-Route::get(
+Route::get( //Sisa User
     "informasi-suhu",
     [InformasiSuhuController::class, 'index']
 );
 
-Route::get(
+Route::get( //Sisa User
     "informasi-suhu/{id}",
     [InformasiSuhuController::class, 'show']
 );

@@ -36,12 +36,21 @@ class ArtikelController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->user()->role_id != 1) {
+            return response()->json([
+                'message' => 'You are not authorized to perform this action',
+                'error' => null,
+            ], 403);
+        }
+        $request->merge([
+            'user_id' => $request->user()->no_ktp
+        ]);
         $validator = Validator::make($request->all(), [
             'title' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string'],
             'image' => ['nullable', 'string'],
             'category' => ['required', 'string', 'max:255'],
-            'user_id' => ['required', 'exists:users,id'],
+            'user_id' => ['required', 'exists:users,no_ktp'],
         ]);
 
         if ($validator->fails()) {
@@ -96,12 +105,24 @@ class ArtikelController extends Controller
      */
     public function update(Request $request, int $id)
     {
+
+        $user = $request->user();
+        if ($request->user()->role_id != 1) {
+            return response()->json([
+                'message' => 'You are not authorized to perform this action',
+                'error' => null,
+            ], 403);
+        }
+        $request->merge([
+            'user_id' => $request->user()->no_ktp
+        ]);
+
         $validator = Validator::make($request->all(), [
             'title' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string'],
             'image' => ['nullable', 'string'],
             'category' => ['required', 'string', 'max:255'],
-            'user_id' => ['required', 'exists:users,id'],
+            'user_id' => ['required', 'exists:users,no_ktp'],
         ]);
 
         if ($validator->fails()) {
@@ -129,6 +150,14 @@ class ArtikelController extends Controller
      */
     public function destroy(int $id)
     {
+
+        if ($request->user()->role_id != 1) {
+            return response()->json([
+                'message' => 'You are not authorized to perform this action',
+                'error' => null,
+            ], 403);
+        }
+
         try {
             $article = Artikel::findOrFail($id);
             $article->delete();
