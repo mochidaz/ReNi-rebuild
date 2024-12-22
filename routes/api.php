@@ -82,17 +82,18 @@ Route::middleware(['auth:sanctum'])->group(function () {
         "lahan/{id}",
         [LahanPetaniController::class, 'update']
     );
-    Route::delete(
+    Route::delete( //Selesai
         "lahan/{id}",
         [LahanPetaniController::class, 'destroy']
     );
+    Route::get( //Selesai
+        "lahan",
+        [LahanPetaniController::class, 'index']
+    );
 });
 
-Route::get(
-    "lahan",
-    [LahanPetaniController::class, 'index']
-);
-Route::get(
+
+Route::get( //Selesai
     "lahan/{id}",
     [LahanPetaniController::class, 'show']
 );
@@ -184,68 +185,68 @@ Route::middleware(['auth:sanctum'])->group(function () {
         "data-panen/{id}",
         [DataPanenController::class, 'update']
     );
-    Route::delete(
+    Route::delete( //Selesai
         "data-panen/{id}",
         [DataPanenController::class, 'destroy']
     );
+    Route::get( //Selesai
+        "data-panen",
+        [DataPanenController::class, 'index']
+    );
 });
 
-Route::get(
-    "data-panen",
-    [DataPanenController::class, 'index']
-);
-Route::get(
+Route::get( //Selesai
     "data-panen/{id}",
     [DataPanenController::class, 'show']
 );
 
 // Artikel - Admin
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post(
+    Route::post( //Selesai
         "artikel",
         [ArtikelController::class, 'store']
     );
-    Route::put(
+    Route::put( //Selesai
         "artikel/{id}",
         [ArtikelController::class, 'update']
     );
-    Route::delete(
+    Route::delete( //Selesai
         "artikel/{id}",
         [ArtikelController::class, 'destroy']
     );
 });
 
-Route::get(
+Route::get( //Selesai
     "artikel",
     [ArtikelController::class, 'index']
 );
-Route::get(
+Route::get( //Selesai
     "artikel/{id}",
     [ArtikelController::class, 'show']
 );
 
-// Artikel Image - Admin
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post(
-        "artikel-image",
-        [ArtikelImageController::class, 'store']
-    );
-    Route::put(
-        "artikel-image/{id}",
-        [ArtikelImageController::class, 'update']
-    );
-    Route::delete(
-        "artikel-image/{id}",
-        [ArtikelImageController::class, 'destroy']
-    );
-});
+// // Artikel Image - Admin
+// Route::middleware(['auth:sanctum'])->group(function () {
+//     Route::post(
+//         "artikel-image",
+//         [ArtikelImageController::class, 'store']
+//     );
+//     Route::put(
+//         "artikel-image/{id}",
+//         [ArtikelImageController::class, 'update']
+//     );
+//     Route::delete(
+//         "artikel-image/{id}",
+//         [ArtikelImageController::class, 'destroy']
+//     );
+// });
 
-Route::get(
-    "artikel-image",
-    [ArtikelImageController::class, 'index']
-);
-Route::get(
-    "artikel-image/{id}",
-    [ArtikelImageController::class, 'show']
-);
+// Route::get(
+//     "artikel-image",
+//     [ArtikelImageController::class, 'index']
+// );
+// Route::get(
+//     "artikel-image/{id}",
+//     [ArtikelImageController::class, 'show']
+// );
 

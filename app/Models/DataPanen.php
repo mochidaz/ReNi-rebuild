@@ -30,10 +30,5 @@ class DataPanen extends Model
     public function lahan()
     {
         return $this->belongsTo(LahanPetani::class);
-    }
-
-    public function dataPanenImage()
-    {
-        return $this->hasMany(DataPanenImage::class);
-    }
+    }   
 }

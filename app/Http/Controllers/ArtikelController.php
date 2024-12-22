@@ -42,29 +42,43 @@ class ArtikelController extends Controller
                 'error' => null,
             ], 403);
         }
-        $request->merge([
-            'user_id' => $request->user()->no_ktp
-        ]);
         $validator = Validator::make($request->all(), [
             'title' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string'],
             'image' => ['nullable', 'string'],
             'category' => ['required', 'string', 'max:255'],
-            'user_id' => ['required', 'exists:users,no_ktp'],
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
 
+        $artikelCreated;
+
         try {
-            Artikel::create($request->all());
+            $artikelCreated = Artikel::create([
+                'title' => $request->title,
+                'content' => $request->content,
+                'category' => $request->category
+            ]);
+            if (isset($request->image)) {
+
+                $extension = explode('/', mime_content_type($request->image))[1];
+                $fileName = 'image_' . time() . '.' . $extension;
+                $fileData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $request->image));
+                $path = public_path('uploads\\' . $fileName);
+                file_put_contents($path, $fileData);
+                $artikelCreated->image = 'uploads/' . $fileName;
+                $artikelCreated->save();
+            }
+
         } catch (Exception $e) {
             return response()->json([
                 'message' => 'Failed to create Article',
                 'error' => $e->getMessage()
             ], 400);
         }
+
 
         return response()->json([
             'message' => 'Article created successfully',

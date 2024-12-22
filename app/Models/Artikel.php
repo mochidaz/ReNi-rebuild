@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Artikel extends Model
 {
-    protected $table = "articles";
+    protected $table = "artikel";
 
     protected $fillable = [
         'title',
         'content',
         'image',
         'category',
-        'user_id'
     ];
 
     public function user()

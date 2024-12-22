@@ -12,9 +12,10 @@ class DataPanenController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $dataPanen = DataPanen::with(['pangan', 'user', 'lahan', 'dataPanenImage'])->get();
+        $user = $request->user();
+        $dataPanen = DataPanen::with(['pangan', 'user', 'lahan'])->where('user_id', $user->no_ktp)->get();
 
         return response()->json([
             'message' => 'Data Panen found',
