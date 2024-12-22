@@ -38,11 +38,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 // Wilayah
-Route::get( //Sisa User
+Route::get( //Selesai
     "wilayah",
     [WilayahController::class, 'index']
 );
-Route::get( //Sisa User
+Route::get( //Selesai
     "wilayah/{id}",
     [WilayahController::class, 'show']
 );
@@ -63,11 +63,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     );
 });
 
-Route::get( //Sisa User
+Route::get( //Selesai
     "pangan",
     [PanganController::class, 'index']
 );
-Route::get( //Sisa User
+Route::get( //Selesai
     "pangan/{id}",
     [PanganController::class, 'show']
 );
@@ -138,11 +138,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     );
 });
 
-Route::get( //Sisa User
+Route::get( //Selesai
     "informasi-tanah",
     [InformasiTanahController::class, 'index']
 );
-Route::get( //Sisa User
+Route::get( //Selesai
     "informasi-tanah/{id}",
     [InformasiTanahController::class, 'show']
 );
@@ -164,12 +164,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     );
 });
 
-Route::get( //Sisa User
+Route::get( //Selesai
     "informasi-suhu",
     [InformasiSuhuController::class, 'index']
 );
 
-Route::get( //Sisa User
+Route::get( //Selesai
     "informasi-suhu/{id}",
     [InformasiSuhuController::class, 'show']
 );
