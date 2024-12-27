@@ -105,7 +105,7 @@ class DataPanenController extends Controller
             'tanggal_penanaman' => ['required', 'date'],
             'tanggal_panen' => ['required', 'date'],
             'pangan_id' => ['required', 'exists:pangan,id'],
-            'user_id' => ['required', 'exists:users,id'],
+            'user_id' => ['required', 'exists:users,no_ktp'],
             'hasil_panen' => ['required', 'numeric'],
             'lahan_id' => ['required', 'exists:lahan_petani,id'],
         ]);

@@ -102,7 +102,7 @@ class LahanPetaniController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'luas_lahan' => ['required', 'numeric'],
-            'user_id' => ['required', 'exists:users,id'],
+            'user_id' => ['required', 'exists:users,no_ktp'],
             'wilayah_id' => ['required', 'exists:wilayah,id'],
             'name' => ['required', 'string', 'max:255'],
             'lokasi' => ['required', 'string'],
